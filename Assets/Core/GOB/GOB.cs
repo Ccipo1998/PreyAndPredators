@@ -66,12 +66,12 @@ public static class GOB
         List<GOB_Goal> after = new List<GOB_Goal>(needs);
         for (int i = 0; i < after.Count; ++i)
         {
-            after[i].Value -= after[i].DecreaseRate * delayTime;
-            after[i].Value = Mathf.Max(after[i].MinValue, after[i].Value);
+            after[i].Value -= after[i].Data.DecreaseRate * delayTime;
+            after[i].Value = Mathf.Max(after[i].Data.MinValue, after[i].Value);
         }
 
         // time to satisfy selected goal
-        float time = (after[selectedGoal].MaxValue - after[selectedGoal].Value) / after[selectedGoal].SatisfyRate;
+        float time = (after[selectedGoal].Data.MaxValue - after[selectedGoal].Value) / after[selectedGoal].Data.SatisfyRate;
 
         for (int i = 0; i < after.Count; ++i)
         {
@@ -86,14 +86,14 @@ public static class GOB
 
     private static float IncreasingDiscontentment(GOB_Goal need, float time)
     {
-        float disc = need.MaxValue - need.Value - (need.SatisfyRate * time);
+        float disc = need.Data.MaxValue - need.Value - (need.Data.SatisfyRate * time);
         return disc * disc;
     }
 
     private static float DecreasingDiscontentment(GOB_Goal need, float time)
     {
-        float disc = need.MaxValue - need.Value + (need.DecreaseRate * time);
-        disc = Mathf.Max(need.MinValue, disc);
+        float disc = need.Data.MaxValue - need.Value + (need.Data.DecreaseRate * time);
+        disc = Mathf.Max(need.Data.MinValue, disc);
         return disc * disc;
     }
 

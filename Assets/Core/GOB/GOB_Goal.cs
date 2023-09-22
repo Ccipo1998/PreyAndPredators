@@ -2,21 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/GOB_Goal", order = 1)]
-public class GOB_Goal : ScriptableObject
+public class GOB_Goal
 {
-    // TODO: this should be not editable in editor
-    private int Id;
-
-    public string Name;
+    public int Id;
     public float Value;
 
-    public float SatisfyRate, DecreaseRate;
-
-    public float MinValue, MaxValue;
-
-    public void SetId(int id)
-    {
-        Id = id;
-    }
+    public Scriptable_GOB_Goal Data;
 }

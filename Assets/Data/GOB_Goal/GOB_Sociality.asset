@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47f7033148553a14ab6feff9797f40d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ef6b96e9fa2cbb4796e54223662cda5, type: 3}
   m_Name: GOB_Sociality
   m_EditorClassIdentifier: 
   Name: Sociality
   Value: 50
-  SatisfyRate: 8
-  DecreaseRate: 0.3
+  SatisfyRate: 10
+  DecreaseRate: 0.5
   MinValue: 0
   MaxValue: 100

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Animal : MonoBehaviour
 {
     [SerializeField]
-    private List<GOB_Goal> _StartingNeeds;
+    private List<Scriptable_GOB_Goal> _StartingNeeds;
 
     // list of needs (or goals)
     // convention: index = goal id
@@ -18,8 +18,11 @@ public class Animal : MonoBehaviour
         _needs = new List<GOB_Goal>();
         for (int i = 0; i  < _StartingNeeds.Count; ++i)
         {
-            _needs.Add(_StartingNeeds[i]);
-            _needs[i].SetId(i);
+            GOB_Goal goal = new GOB_Goal();
+            goal.Id = i;
+            goal.Value = _StartingNeeds[i].Value;
+            goal.Data = _StartingNeeds[i];
+            _needs.Add(goal);
         }
 
         // start animal life coroutines
@@ -31,9 +34,9 @@ public class Animal : MonoBehaviour
     public IEnumerator SatisfyNeed(int needId)
     {
         // only while the need is satisfied
-        while (_needs[needId].Value <= _needs[needId].MaxValue)
+        while (_needs[needId].Value <= _needs[needId].Data.MaxValue)
         {
-            _needs[needId].Value += _needs[needId].SatisfyRate * Time.deltaTime;
+            _needs[needId].Value += _needs[needId].Data.SatisfyRate * Time.deltaTime;
 
             yield return null;
         }
@@ -53,7 +56,7 @@ public class Animal : MonoBehaviour
         {
             for (int i = 0; i < _needs.Count; ++i)
             {
-                _needs[i].Value -= _needs[i].DecreaseRate * Time.deltaTime;
+                _needs[i].Value -= _needs[i].Data.DecreaseRate * Time.deltaTime;
             }
 
             yield return null;

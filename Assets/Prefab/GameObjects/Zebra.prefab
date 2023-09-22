@@ -99,7 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _StartingNeeds:
   - {fileID: 11400000, guid: 329b6092bb849a54d8b6fbb25cdc6ef6, type: 2}
-  - {fileID: 11400000, guid: efd10c13ef93b28459f1150f77ea2652, type: 2}
-  - {fileID: 11400000, guid: 9758194e32c4a5740ab28872b180b808, type: 2}
-  - {fileID: 11400000, guid: 277af9e5d9aafbd46a54d55c14373231, type: 2}
-  - {fileID: 11400000, guid: 0346e1fc02903294dbdb9af6bab8a05f, type: 2}
+  - {fileID: 11400000, guid: 26892a40d05387d43a4e02f2640e8157, type: 2}
+  - {fileID: 11400000, guid: 25d3df28c8f5c2848839582dcb900d0b, type: 2}
+  - {fileID: 11400000, guid: bf7eb9e4f9ccb5342b6d2cb966a9ae7f, type: 2}
+  - {fileID: 11400000, guid: 992c4e33267181745a5da90dceb52131, type: 2}
+  _Panel: {fileID: 2230249961929547516, guid: d9ceaf5a87cc6a24cae2aec0d61cf893, type: 3}
