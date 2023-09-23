@@ -7,22 +7,18 @@ public class Animal : MonoBehaviour
     [SerializeField]
     private List<Scriptable_GOB_Goal> _StartingNeeds;
 
-    // list of needs (or goals)
-    // convention: index = goal id
-    private List<GOB_Goal> _needs;
-
+    // dictionary of need id - value
+    private Dictionary<int, GOB_Goal> _Needs;
+    
     void OnEnable()
     {
-        // copy starting needs
-        // assert convention: index = goal id
-        _needs = new List<GOB_Goal>();
+        // init needs dictionary
+        _Needs = new Dictionary<int, GOB_Goal>();
         for (int i = 0; i  < _StartingNeeds.Count; ++i)
         {
             GOB_Goal goal = new GOB_Goal();
-            goal.Id = i;
-            goal.Value = _StartingNeeds[i].Value;
-            goal.Data = _StartingNeeds[i];
-            _needs.Add(goal);
+            goal.SetData(_StartingNeeds[i]);
+            _Needs.Add(goal.Data.Id, goal);
         }
 
         // start animal life coroutines
@@ -34,9 +30,9 @@ public class Animal : MonoBehaviour
     public IEnumerator SatisfyNeed(int needId)
     {
         // only while the need is satisfied
-        while (_needs[needId].Value <= _needs[needId].Data.MaxValue)
+        while (_Needs[needId].Value <= _Needs[needId].Data.MaxValue)
         {
-            _needs[needId].Value += _needs[needId].Data.SatisfyRate * Time.deltaTime;
+            _Needs[needId].Value += _Needs[needId].Data.SatisfyRate * Time.deltaTime;
 
             yield return null;
         }
@@ -54,9 +50,9 @@ public class Animal : MonoBehaviour
         // for all animal life
         while (true)
         {
-            for (int i = 0; i < _needs.Count; ++i)
+            foreach (int key in _Needs.Keys)
             {
-                _needs[i].Value -= _needs[i].Data.DecreaseRate * Time.deltaTime;
+                _Needs[key].Value -= _Needs[key].Data.DecreaseRate * Time.deltaTime;
             }
 
             yield return null;

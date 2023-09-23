@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef6b96e9fa2cbb4796e54223662cda5, type: 3}
   m_Name: GOB_Space
   m_EditorClassIdentifier: 
+  Id: 3
   Name: Space
   Value: 50
   SatisfyRate: 15

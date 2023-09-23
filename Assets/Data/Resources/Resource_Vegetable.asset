@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ef6b96e9fa2cbb4796e54223662cda5, type: 3}
-  m_Name: GOB_Water
+  m_Script: {fileID: 11500000, guid: 6de2da90b42c87d44a8eedb995a654cc, type: 3}
+  m_Name: Resource_Vegetable
   m_EditorClassIdentifier: 
-  Id: 2
-  Name: Water
-  Value: 50
-  SatisfyRate: 10
-  DecreaseRate: 0.8
-  MinValue: 0
-  MaxValue: 100
+  NeedId: 1
+  Name: Vegetable
+  Quantity: 100
+  MinQuantity: 0
+  MaxQuantity: 100
+  GrowingRate: 0.5
