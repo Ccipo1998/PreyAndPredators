@@ -4,9 +4,11 @@ using UnityEngine;
 
 // defer function to trigger activation condition
 // returns true when the transition can fire
+[System.Serializable]
 public delegate bool HSM_Condition();
 
 // defer function to perform action
+[System.Serializable]
 public delegate void HSM_Action();
 
 public class HSM_Transition

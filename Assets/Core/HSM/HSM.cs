@@ -11,12 +11,12 @@ public class HSM : HSM_State
     // current state
     public HSM_State CurrentState;
 
-    public HSM(Enum name, HSM_State initialState, int hierarchyLevel) : base(name, hierarchyLevel)
+    public HSM(string name, HSM_State initialState, int hierarchyLevel) : base(name, hierarchyLevel)
     {
         InitialState = initialState;
     }
 
-    public HSM(Enum name, HSM initialState, int hierarchyLevel) : base(name, hierarchyLevel)
+    public HSM(string name, HSM initialState, int hierarchyLevel) : base(name, hierarchyLevel)
     {
         InitialState = initialState;
     }

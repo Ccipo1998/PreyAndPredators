@@ -6,7 +6,7 @@ using UnityEngine;
 public class HSM_State
 {
     // state name -> for sanity
-    public Enum Name;
+    public string Name;
 
     // list of actions to perform based on transitions fire or not
     public List<HSM_Action> EnterActions = new List<HSM_Action>();
@@ -23,7 +23,7 @@ public class HSM_State
     // parent state of the current one
     public HSM_State ParentState;
 
-    public HSM_State(Enum name, int hierarchyLevel)
+    public HSM_State(string name, int hierarchyLevel)
     {
         Name = name;
         Links = new Dictionary<HSM_Transition, HSM_State>();

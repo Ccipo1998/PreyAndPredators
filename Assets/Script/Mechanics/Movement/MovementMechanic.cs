@@ -24,10 +24,11 @@ public class MovementMechanic : MonoBehaviour
 
     private Coroutine _speed_update;
 
-    public void RandomWalk()
+    public bool RandomWalk()
     {
         // stop current speed update (it could be running)
-        StopCoroutine(_speed_update);
+        if (_speed_update != null)
+            StopCoroutine(_speed_update);
 
         // set random direction
         _Direction = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
@@ -38,12 +39,8 @@ public class MovementMechanic : MonoBehaviour
 
         // match walk speed
         StartCoroutine(ToWalkSpeed());
-    }
 
-    private void OnEnable()
-    {
-        // assign just to insure coroutines are always != null
-        _speed_update = StartCoroutine(PlaceholderCoroutine());
+        return true;
     }
 
     // position updated at each frame
@@ -82,11 +79,6 @@ public class MovementMechanic : MonoBehaviour
 
         // insure correct speed
         _Speed = _WalkSpeed;
-    }
-
-    private IEnumerator PlaceholderCoroutine()
-    {
-        yield return null;
     }
 
     #endregion
