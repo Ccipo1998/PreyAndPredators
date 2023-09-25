@@ -24,7 +24,7 @@ public class MovementMechanic : MonoBehaviour
 
     private Coroutine _speed_update;
 
-    public bool RandomWalk()
+    public int RandomWalk()
     {
         // stop current speed update (it could be running)
         if (_speed_update != null)
@@ -40,7 +40,7 @@ public class MovementMechanic : MonoBehaviour
         // match walk speed
         StartCoroutine(ToWalkSpeed());
 
-        return true;
+        return 1;
     }
 
     // position updated at each frame

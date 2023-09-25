@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate bool BT_Call();
+public delegate int BT_Call();
 
 public abstract class BT_ITask
 {

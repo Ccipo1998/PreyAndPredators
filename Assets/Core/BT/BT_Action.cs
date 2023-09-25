@@ -13,6 +13,6 @@ public class BT_Action : BT_ITask
 
     public override int Run()
     {
-        return Action() ? 1 : 0;
+        return Action();
     }
 }

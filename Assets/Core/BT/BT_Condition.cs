@@ -13,6 +13,6 @@ public class BT_Condition : BT_ITask
 
     public override int Run()
     {
-        return Condition() ? 1 : 0;
+        return Condition();
     }
 }

@@ -8,7 +8,7 @@ public class BT_Wandering : BT
 
     public BT_Wandering() : base(null) { }
 
-    public void BuildBT()
+    public override void BuildBT()
     {
         // creation of the BT using data
         Root = new BT_Action(WanderingAction);

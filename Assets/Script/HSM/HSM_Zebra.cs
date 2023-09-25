@@ -9,18 +9,19 @@ public class HSM_Zebra : HSM
     private MovementMechanic _movementMechanic;
 
     // BTs
-    private BT_Wandering _BT_wandering;
+    //private BT_Wandering _BT_wandering;
+    private BT_Search _BT_search;
 
     public HSM_Zebra(MovementMechanic movementMechanic) : base(string.Empty, null, -1)
     {
         _movementMechanic = movementMechanic;
 
         // hard-coded zebra HSM
-        HSM_State wandering = new HSM_State("Wandering", 0);
-        _BT_wandering = new BT_Wandering();
-        _BT_wandering.WanderingAction = _movementMechanic.RandomWalk;
-        _BT_wandering.BuildBT();
-        wandering.StayActions.Add(_BT_wandering.Step);
-        InitialState = new HSM("Zebra HSM", wandering, 0);
+        HSM_State search = new HSM_State("Search", 0);
+        _BT_search = new BT_Search();
+        _BT_search.WanderingAction = _movementMechanic.RandomWalk;
+        _BT_search.BuildBT();
+        search.StayActions.Add(_BT_search.Step);
+        InitialState = new HSM("Zebra HSM", search, 0);
     }
 }
