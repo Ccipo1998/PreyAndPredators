@@ -2,26 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BT_Search : BT
+public class BT_Search : BT_MonoBehavior
 {
-    public BT_Call WanderingAction;
+    [SerializeField]
+    private MovementMechanic _MovementMechanic;
 
-    // wait data
-    private bool wait = false;
-    private float time = .0f;
-    private float waited = .0f;
-    private float waitFor;
-
-    public BT_Search(float waitFor = 5.0f) : base(null)
+    private void OnEnable()
     {
-        this.waitFor = waitFor;
-    }
+        // create BT
 
-    public override void BuildBT()
-    {
         List<BT_ITask> children = new List<BT_ITask>
         {
-            new BT_Action(WanderingAction),
+            new BT_Action(_MovementMechanic.RandomWalk),
             new BT_Action(Wait)
         };
         BT_Sequence sequence = new BT_Sequence(children);
@@ -29,6 +21,13 @@ public class BT_Search : BT
 
         Root = sequence;
     }
+
+    #region ACTIONS
+
+    private bool wait = false;
+    private float time = .0f;
+    private float waited = .0f;
+    private float waitFor = 5.0f;
 
     private int Wait()
     {
@@ -56,4 +55,6 @@ public class BT_Search : BT
 
         return -1;
     }
+
+    #endregion
 }

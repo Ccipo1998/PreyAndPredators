@@ -10,13 +10,15 @@ public class AI_Zebra : MonoBehaviour
 
     [SerializeField]
     private MovementMechanic _MovementMechanic;
+    [SerializeField]
+    private BT_Search _BTSearch;
 
     private HSM_Zebra _hsm;
 
     private void OnEnable()
     {
         // init zebra hsm
-        _hsm = new HSM_Zebra(_MovementMechanic);
+        _hsm = new HSM_Zebra(_BTSearch);
 
         StartCoroutine(UpdateHSM());
     }

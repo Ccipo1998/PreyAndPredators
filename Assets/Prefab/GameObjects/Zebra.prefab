@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3459309167491246877}
   - component: {fileID: -8722272176336162965}
   - component: {fileID: 4995994175642453723}
+  - component: {fileID: 6282770667931745321}
   - component: {fileID: 1660302114828941755}
   m_Layer: 0
   m_Name: Zebra
@@ -123,6 +124,21 @@ MonoBehaviour:
   _Deceleration: -2
   _Direction: {x: 0, y: 0}
   _Speed: 0
+--- !u!114 &6282770667931745321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700407068539988595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9045fa11d02c155469cec81ec08b4d24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _FixedUpdate: 0
+  _FixedStep: 0.1
+  _MovementMechanic: {fileID: 4995994175642453723}
 --- !u!114 &1660302114828941755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,3 +153,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ReactionTime: 1
   _MovementMechanic: {fileID: 4995994175642453723}
+  _BTSearch: {fileID: 6282770667931745321}

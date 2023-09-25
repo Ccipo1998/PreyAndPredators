@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BT
+public class BT
 {
     public BT_ITask Root;
 
@@ -20,7 +20,4 @@ public abstract class BT
     {
         Root.Run();
     }
-
-    // creation of specific BTs using data
-    public abstract void BuildBT();
 }
