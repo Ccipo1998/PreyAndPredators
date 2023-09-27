@@ -13,12 +13,17 @@ public class FOV_Animal : MonoBehaviour
     private float _Length;
     [SerializeField]
     private float _Angle;
+    [SerializeField]
+    protected bool _FixedUpdate = false;
+    [SerializeField]
+    protected float _FixedStep = .1f;
 
     [Header("FOV data")]
     [SerializeField]
-    public List<Collider2D> _Seen;
+    private List<Collider2D> _Seen;
 
-    [SerializeField]
+    public List<Collider2D> Seen { get => _Seen; }
+    
     private float _min_dot;
 
     private void OnEnable()
@@ -29,6 +34,12 @@ public class FOV_Animal : MonoBehaviour
         // calculate min dot basing on angle
         Vector2 rotated = Quaternion.Euler(new Vector3(.0f, .0f, _Angle / 2.0f)) * _MovementMechanic.Direction;
         _min_dot = Vector2.Dot(_MovementMechanic.Direction, rotated);
+
+        // start coroutine
+        if (_FixedUpdate)
+            StartCoroutine(FixedUpdateFOV());
+        else
+            StartCoroutine(UpdateFOV());
     }
 
     private void See()
@@ -37,7 +48,7 @@ public class FOV_Animal : MonoBehaviour
         _Seen.Clear();
 
         // check around
-        Collider2D[] near = Physics2D.OverlapCircleAll(transform.position, _Length);
+        List<Collider2D> near = Physics2D.OverlapCircleAll(transform.position, _Length).ToList();
 
         // check basing on view cone
         foreach (Collider2D collider in near)
@@ -52,13 +63,35 @@ public class FOV_Animal : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    // update at each frame
+    private IEnumerator UpdateFOV()
+    {
+        // for all animal life
+        while (true)
+        {
+            See();
+
+            yield return null;
+        }
+    }
+
+    // update every fixed time
+    private IEnumerator FixedUpdateFOV()
+    {
+        // for all animal life
+        while (true)
+        {
+            See();
+
+            yield return new WaitForSeconds(_FixedStep);
+        }
+    }
+
+    private void Update()
     {
         #if DEBUG
             DrawViewCone();
         #endif
-
-        See();
     }
 
     #region DEBUG
