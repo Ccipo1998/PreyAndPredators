@@ -12,4 +12,6 @@ public class Scriptable_GOB_Goal : ScriptableObject
     public float SatisfyRate, DecreaseRate;
 
     public float MinValue, MaxValue;
+
+    public bool CanBeAlwaysSatisfied = false;
 }

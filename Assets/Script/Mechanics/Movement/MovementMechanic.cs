@@ -25,6 +25,7 @@ public class MovementMechanic : MonoBehaviour
     private Coroutine _speed_update;
 
     public Vector2 Direction { get => _Direction; }
+    public float WalkSpeed { get => _WalkSpeed; }
 
     public int RandomWalk()
     {

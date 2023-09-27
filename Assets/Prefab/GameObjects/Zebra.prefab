@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8592502766269667315}
   - component: {fileID: 6282770667931745321}
   - component: {fileID: 1660302114828941755}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Zebra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,6 +188,9 @@ MonoBehaviour:
   _Angle: 45
   _FixedUpdate: 1
   _FixedStep: 1
+  _LayerMask:
+    serializedVersion: 2
+    m_Bits: 704
   _Seen: []
 --- !u!114 &6282770667931745321
 MonoBehaviour:
@@ -219,4 +222,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ReactionTime: 1
   _MovementMechanic: {fileID: 4995994175642453723}
+  _FovAnimal: {fileID: 0}
   _BTSearch: {fileID: 6282770667931745321}

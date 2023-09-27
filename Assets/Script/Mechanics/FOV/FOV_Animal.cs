@@ -14,9 +14,11 @@ public class FOV_Animal : MonoBehaviour
     [SerializeField]
     private float _Angle;
     [SerializeField]
-    protected bool _FixedUpdate = false;
+    private bool _FixedUpdate = false;
     [SerializeField]
-    protected float _FixedStep = .1f;
+    private float _FixedStep = .1f;
+    [SerializeField]
+    private LayerMask _LayerMask;
 
     [Header("FOV data")]
     [SerializeField]

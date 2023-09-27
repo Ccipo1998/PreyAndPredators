@@ -9,7 +9,9 @@ public class Animal : MonoBehaviour
 
     // dictionary of need id - value
     private Dictionary<int, GOB_Goal> _Needs;
-    
+
+    public Dictionary<int, GOB_Goal> Needs { get => _Needs; }
+
     void OnEnable()
     {
         // init needs dictionary

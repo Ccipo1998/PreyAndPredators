@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3632531604854007725}
   - component: {fileID: -3596493303812258464}
   - component: {fileID: 2525200873870950315}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Vegetable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
