@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1660302114828941755, guid: 9121d8ffb962e264f8641b6e2cfb1929, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1700407068539988595, guid: 9121d8ffb962e264f8641b6e2cfb1929, type: 3}
       propertyPath: m_Name
       value: Zebra

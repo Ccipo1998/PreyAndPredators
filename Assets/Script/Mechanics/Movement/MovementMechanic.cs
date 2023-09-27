@@ -24,6 +24,8 @@ public class MovementMechanic : MonoBehaviour
 
     private Coroutine _speed_update;
 
+    public Vector2 Direction { get => _Direction; }
+
     public int RandomWalk()
     {
         // stop current speed update (it could be running)

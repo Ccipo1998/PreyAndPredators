@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3459309167491246877}
   - component: {fileID: -8722272176336162965}
   - component: {fileID: 4995994175642453723}
+  - component: {fileID: 8592502766269667315}
   - component: {fileID: 6282770667931745321}
   - component: {fileID: 1660302114828941755}
   m_Layer: 0
@@ -122,8 +123,24 @@ MonoBehaviour:
   _WalkSpeed: 1.5
   _Acceleration: 1
   _Deceleration: -2
-  _Direction: {x: 0, y: 0}
+  _Direction: {x: 1, y: 0}
   _Speed: 0
+--- !u!114 &8592502766269667315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700407068539988595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31f760d337b5a8418b968cda5bc1fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MovementMechanic: {fileID: 4995994175642453723}
+  _Length: 5
+  _Angle: 45
+  _Seen: []
 --- !u!114 &6282770667931745321
 MonoBehaviour:
   m_ObjectHideFlags: 0
