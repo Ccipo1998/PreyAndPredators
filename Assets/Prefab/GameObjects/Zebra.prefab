@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _FixedUpdate: 0
   _FixedStep: 0.1
+  _AIAnimal: {fileID: 1660302114828941755}
   _MovementMechanic: {fileID: 4995994175642453723}
 --- !u!114 &1660302114828941755
 MonoBehaviour:
