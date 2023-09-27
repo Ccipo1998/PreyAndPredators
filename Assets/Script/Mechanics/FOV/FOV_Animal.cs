@@ -18,6 +18,7 @@ public class FOV_Animal : MonoBehaviour
     [SerializeField]
     public List<Collider2D> _Seen;
 
+    [SerializeField]
     private float _min_dot;
 
     private void OnEnable()
@@ -41,7 +42,7 @@ public class FOV_Animal : MonoBehaviour
         // check basing on view cone
         foreach (Collider2D collider in near)
         {
-            float dot = Vector2.Dot(collider.transform.position, _MovementMechanic.Direction);
+            float dot = Vector2.Dot((collider.transform.position - transform.position).normalized, _MovementMechanic.Direction);
             
             // collider inside view cone
             if (dot >=  _min_dot)
