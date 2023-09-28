@@ -19,3 +19,4 @@ MonoBehaviour:
   DecreaseRate: 0.1
   MinValue: 0
   MaxValue: 100
+  CanBeAlwaysSatisfied: 1

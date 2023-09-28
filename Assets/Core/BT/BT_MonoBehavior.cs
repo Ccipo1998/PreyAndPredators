@@ -15,6 +15,9 @@ public abstract class BT_MonoBehavior : MonoBehaviour
 
     protected Coroutine _coroutine;
 
+    // function to call just after stopping the BT
+    protected abstract void OnStopBT();
+
     public void StartBT()
     {
       if (_FixedUpdate)
@@ -27,6 +30,9 @@ public abstract class BT_MonoBehavior : MonoBehaviour
     {
         StopCoroutine(_coroutine);
         _coroutine = null;
+
+        // call function to do at stopping the BT
+        OnStopBT();
     }
 
     // called at each frame

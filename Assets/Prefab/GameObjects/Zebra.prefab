@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4995994175642453723}
   - component: {fileID: 8592502766269667315}
   - component: {fileID: 6282770667931745321}
+  - component: {fileID: -7685424887615771496}
   - component: {fileID: 1660302114828941755}
   m_Layer: 9
   m_Name: Zebra
@@ -169,6 +170,7 @@ MonoBehaviour:
   _WalkSpeed: 1.5
   _Acceleration: 1
   _Deceleration: -2
+  _StopDistance: 1
   _Direction: {x: 1, y: 0}
   _Speed: 0
 --- !u!114 &8592502766269667315
@@ -208,6 +210,23 @@ MonoBehaviour:
   _FixedStep: 0.1
   _AIAnimal: {fileID: 1660302114828941755}
   _MovementMechanic: {fileID: 4995994175642453723}
+--- !u!114 &-7685424887615771496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700407068539988595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984c9223fc326e141b6a8d6e2074eb9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _FixedUpdate: 1
+  _FixedStep: 1
+  _AIAnimal: {fileID: 1660302114828941755}
+  _MovementMechanic: {fileID: 4995994175642453723}
+  Resource: {fileID: 0}
 --- !u!114 &1660302114828941755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +240,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ReactionTime: 1
+  _BTsNumber: 2
+  _Animal: {fileID: -8722272176336162965}
   _MovementMechanic: {fileID: 4995994175642453723}
-  _FovAnimal: {fileID: 0}
+  _FovAnimal: {fileID: 8592502766269667315}
   _BTSearch: {fileID: 6282770667931745321}
+  _BTSatisfy: {fileID: -7685424887615771496}

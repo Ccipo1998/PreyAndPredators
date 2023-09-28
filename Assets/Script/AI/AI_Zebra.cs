@@ -8,6 +8,7 @@ using UnityEngine;
 public class AI_Zebra : AI_Animal
 {
     [Header("Animal data")]
+    [SerializeField]
     private Animal _Animal;
 
     [Header("Mechanics")]
@@ -19,17 +20,16 @@ public class AI_Zebra : AI_Animal
     [Header("BTs")]
     [SerializeField]
     private BT_Search _BTSearch;
-
-    // number of behavior trees associated to the AI -> for initialization
-    private int _BT_number = 1;
+    [SerializeField]
+    private BT_Satisfy _BTSatisfy;
 
     #region BTs INITS
 
     public override void BT_Initialized()
     {
-        --_BT_number;
+        --_BTsNumber;
 
-        if (_BT_number == 0)
+        if (_BTsNumber == 0)
             StartCoroutine(UpdateHSM());
     }
 
@@ -45,6 +45,8 @@ public class AI_Zebra : AI_Animal
         search.ExitActions.Add(_BTSearch.StopBT);
 
         HSM_State satisfy = new HSM_State("Satisfy", 0);
+        satisfy.EnterActions.Add(_BTSatisfy.StartBT);
+        satisfy.ExitActions.Add(_BTSatisfy.StopBT);
 
         // transitions
         HSM_Transition canSatisfy = new HSM_Transition("Can satisfy", CanSatisfy);

@@ -28,6 +28,12 @@ public class BT_Search : BT_MonoBehavior
         _AIAnimal.BT_Initialized();
     }
 
+    // stop movement just after stopping the BT
+    protected override void OnStopBT()
+    {
+        _MovementMechanic.Stop();
+    }
+
     #region ACTIONS
 
     private bool wait = false;

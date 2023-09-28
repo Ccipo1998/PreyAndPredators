@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class MovementMechanic : MonoBehaviour
@@ -14,6 +15,8 @@ public class MovementMechanic : MonoBehaviour
     private float _Acceleration;
     [SerializeField]
     private float _Deceleration;
+    [SerializeField]
+    private float _StopDistance;
 
     [Header("Movement data")]
 
@@ -23,9 +26,11 @@ public class MovementMechanic : MonoBehaviour
     private float _Speed;
 
     private Coroutine _speed_update;
+    private Vector2? _target;
 
     public Vector2 Direction { get => _Direction; }
     public float WalkSpeed { get => _WalkSpeed; }
+    public float StopDistance { get => _StopDistance; }
 
     public int RandomWalk()
     {
@@ -41,9 +46,44 @@ public class MovementMechanic : MonoBehaviour
         _Direction.Normalize();
 
         // match walk speed
-        StartCoroutine(ToWalkSpeed());
+        _speed_update = StartCoroutine(ToWalkSpeed());
 
         return 1;
+    }
+
+    public int GoTo(Vector2 position)
+    {
+        // stop current speed update (it could be running)
+        if (_speed_update != null)
+            StopCoroutine(_speed_update);
+
+        // set direction
+        _Direction = (position - (Vector2)transform.position).normalized;
+
+        // save target
+        _target = position;
+
+        // match walk speed
+        _speed_update = StartCoroutine(ToWalkSpeed());
+
+        // check arriving
+        StartCoroutine(StopAtArriving());
+
+        return 0;
+    }
+
+    public int Stop()
+    {
+        // stop current speed update (it could be running)
+        if (_speed_update != null)
+            StopCoroutine(_speed_update);
+
+        _target = null;
+
+        // match 0 speed
+        _speed_update = StartCoroutine(ToStopSpeed());
+
+        return 0;
     }
 
     // position updated at each frame
@@ -82,6 +122,32 @@ public class MovementMechanic : MonoBehaviour
 
         // insure correct speed
         _Speed = _WalkSpeed;
+    }
+
+    private IEnumerator ToStopSpeed()
+    {
+        // deceleration needed
+        // decelerate
+        while (_Speed > .0f)
+        {
+            _Speed += _Deceleration * Time.deltaTime;
+
+            yield return null;
+        }
+
+        // insure zero speed
+        _Speed = .0f;
+        _target = null;
+    }
+
+    private IEnumerator StopAtArriving()
+    {
+        while (((Vector2)_target - (Vector2)transform.position).magnitude > _StopDistance)
+        {
+            yield return null;
+        }
+
+        _speed_update = StartCoroutine(ToStopSpeed());
     }
 
     #endregion
