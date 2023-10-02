@@ -34,10 +34,10 @@ public static class GOB
     }
 
     // perform actual GOB
-    public static GOB_Goal ChooseConvenientBasicGoal(List<GOB_Goal> needs, List<float> timeToReach)
+    public static int ChooseConvenientBasicGoal(List<GOB_Goal> needs, List<float> timeToReach)
     {
         // calculated values
-        GOB_Goal chosen = null;
+        int chosen = -1;
         float finalDiscontentment = float.PositiveInfinity;
 
         // foreach goal i compute the discontentment after the completion of the action fulfilling the goal with an estimated timing
@@ -48,7 +48,7 @@ public static class GOB
 
             if (discontentment < finalDiscontentment)
             {
-                chosen = needs[i];
+                chosen = i;
                 finalDiscontentment = discontentment;
                 //chosen.Value = target;
             }
@@ -61,9 +61,16 @@ public static class GOB
     private static float DiscontentmentAfterGoalSatisfied(List<GOB_Goal> needs, int selectedGoal, float delayTime)
     {
         float disc = .0f;
-        
+
         // calculate goal values after delay
-        List<GOB_Goal> after = new List<GOB_Goal>(needs);
+        List<GOB_Goal> after = new List<GOB_Goal>();
+        for (int i = 0; i < needs.Count; ++i)
+        {
+            after.Add(new GOB_Goal());
+            after[i].Data = needs[i].Data;
+            after[i].Value = needs[i].Value;
+        }
+
         for (int i = 0; i < after.Count; ++i)
         {
             after[i].Value -= after[i].Data.DecreaseRate * delayTime;

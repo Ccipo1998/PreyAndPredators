@@ -38,10 +38,11 @@ public abstract class BT_MonoBehavior : MonoBehaviour
     // called at each frame
     private IEnumerator UpdateBT()
     {
-        // coroutine must be stopped explicitly
-        while (true)
+        // coroutine must be stopped explicitly or due to success/fail of the BT
+        int status = -1;
+        while (status == -1)
         {
-            _root.Run();
+            status = _root.Run();
 
             yield return null;
         }
@@ -50,10 +51,11 @@ public abstract class BT_MonoBehavior : MonoBehaviour
     // called at fixed time steps
     private IEnumerator FixedUpdateBT()
     {
-        // coroutine must be stopped explicitly
-        while (true)
+        // coroutine must be stopped explicitly or due to success/fail of the BT
+        int status = -1;
+        while (status == -1)
         {
-            _root.Run();
+            status = _root.Run();
 
             yield return new WaitForSeconds(_FixedStep);
         }
