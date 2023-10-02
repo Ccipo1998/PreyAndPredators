@@ -16,13 +16,13 @@ public class BT_Search : BT_MonoBehavior
 
         List<BT_ITask> children = new List<BT_ITask>
         {
-            new BT_Action(_MovementMechanic.RandomWalk),
+            new BT_Action(RandomWalk),
             new BT_Action(Wait)
         };
         BT_Sequence sequence = new BT_Sequence(children);
-        BT_DecoratorUntilFail until = new BT_DecoratorUntilFail(sequence);
+        BT_DecoratorRepeat repeat = new BT_DecoratorRepeat(sequence);
 
-        Root = sequence;
+        Root = repeat;
 
         // at end of initialization, always notify that
         _AIAnimal.BT_Initialized();
@@ -35,6 +35,13 @@ public class BT_Search : BT_MonoBehavior
     }
 
     #region ACTIONS
+
+    private int RandomWalk()
+    {
+        _MovementMechanic.RandomWalk();
+
+        return 1;
+    }
 
     private bool wait = false;
     private float time = .0f;

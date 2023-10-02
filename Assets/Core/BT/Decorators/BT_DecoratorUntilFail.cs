@@ -8,7 +8,8 @@ public class BT_DecoratorUntilFail : BT_Decorator
 
     public override int Run()
     {
-        while (_child.Run() != 0);
+        if (_child.Run() != 0)
+            return -1;
 
         return 1;
     }

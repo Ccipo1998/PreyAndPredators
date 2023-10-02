@@ -32,7 +32,7 @@ public class MovementMechanic : MonoBehaviour
     public float WalkSpeed { get => _WalkSpeed; }
     public float StopDistance { get => _StopDistance; }
 
-    public int RandomWalk()
+    public void RandomWalk()
     {
         // stop current speed update (it could be running)
         if (_speed_update != null)
@@ -47,11 +47,9 @@ public class MovementMechanic : MonoBehaviour
 
         // match walk speed
         _speed_update = StartCoroutine(ToWalkSpeed());
-
-        return 1;
     }
 
-    public int GoTo(Vector2 position)
+    public void GoTo(Vector2 position)
     {
         // stop current speed update (it could be running)
         if (_speed_update != null)
@@ -68,11 +66,9 @@ public class MovementMechanic : MonoBehaviour
 
         // check arriving
         StartCoroutine(StopAtArriving());
-
-        return 0;
     }
 
-    public int Stop()
+    public void Stop()
     {
         // stop current speed update (it could be running)
         if (_speed_update != null)
@@ -82,8 +78,6 @@ public class MovementMechanic : MonoBehaviour
 
         // match 0 speed
         _speed_update = StartCoroutine(ToStopSpeed());
-
-        return 0;
     }
 
     // position updated at each frame
