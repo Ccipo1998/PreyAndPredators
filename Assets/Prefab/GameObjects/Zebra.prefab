@@ -244,5 +244,6 @@ MonoBehaviour:
   _Animal: {fileID: -8722272176336162965}
   _MovementMechanic: {fileID: 4995994175642453723}
   _FovAnimal: {fileID: 8592502766269667315}
+  _DefaultTimeToReach: 20
   _BTSearch: {fileID: 6282770667931745321}
   _BTSatisfy: {fileID: -7685424887615771496}

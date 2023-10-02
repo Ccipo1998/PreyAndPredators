@@ -17,6 +17,10 @@ public class AI_Zebra : AI_Animal
     [SerializeField]
     private FOV_Animal _FovAnimal;
 
+    [Header("GOB parameters")]
+    [SerializeField]
+    private float _DefaultTimeToReach;
+
     [Header("BTs")]
     [SerializeField]
     private BT_Search _BTSearch;
@@ -64,10 +68,23 @@ public class AI_Zebra : AI_Animal
     {
         // get objects at minimum distance in fov
         
+        // get goals with default data
         List<GOB_Goal> goals = new List<GOB_Goal>();
         List<Resource> resources = new List<Resource>();
         List<float> times = new List<float>();
 
+        foreach (GOB_Goal goal in _Animal.Needs.Values)
+        {
+            goals.Add(goal);
+            resources.Add(null);
+
+            if (goal.Data.CanBeAlwaysSatisfied)
+                times.Add(.0f);
+            else
+                times.Add(_DefaultTimeToReach);
+        }
+
+        // update goals' distances and resources basing on fov data
         foreach (Collider2D collider in _FovAnimal.Seen)
         {
             // check if it is a resource
@@ -80,42 +97,24 @@ public class AI_Zebra : AI_Animal
             int index = goals.IndexOf(gg);
             float timeToReach = (collider.transform.position - transform.position).magnitude / _MovementMechanic.WalkSpeed; // time to reach current resource
 
-            // already inserted
-            if (index != -1)
+            if (timeToReach < times[index])
             {
                 // nearer
-                if (timeToReach < times[index])
-                {
-                    resources[index] = res;
-                    times[index] = timeToReach;
-                }
-
-                continue;
+                resources[index] = res;
+                times[index] = timeToReach;
             }
-            
-            // not inserted yet
-            goals.Add(gg);
-            resources.Add(res);
-            times.Add(timeToReach);
-        }
-
-        // add special cases
-        List<GOB_Goal> specialGoals = _Animal.Needs.Values.Where((v) => v.Data.CanBeAlwaysSatisfied).ToList();
-        for (int i = 0; i < specialGoals.Count; ++i)
-        {
-            goals.Add(specialGoals[i]);
-            resources.Add(null); // special goals dont have a resource associated
-            times.Add(.0f); // specials goals are immediate
         }
 
         // perform gob
 
-        GOB_Goal selected = GOB.ChooseConvenientBasicGoal(goals, times);
+        int selectedIndex = GOB.ChooseConvenientBasicGoal(goals, times); // always != -1
 
-        // can satisfy
-        if (selected != null)
+        // resource available or can always satisfy -> can satisfy
+        if (resources[selectedIndex] != null || goals[selectedIndex].Data.CanBeAlwaysSatisfied)
         {
             // save the goal and the resource in BT_Satisfy
+            _BTSatisfy.Goal = goals[selectedIndex];
+            _BTSatisfy.Resource = resources[selectedIndex];
 
             return true;
         }
