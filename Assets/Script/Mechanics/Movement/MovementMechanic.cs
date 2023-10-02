@@ -147,6 +147,8 @@ public class MovementMechanic : MonoBehaviour
             yield return null;
         }
 
+        if (_speed_update != null)
+            StopCoroutine(_speed_update);
         _speed_update = StartCoroutine(ToStopSpeed());
     }
 
