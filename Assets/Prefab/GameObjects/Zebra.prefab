@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4280551920213147431}
   - component: {fileID: -8722272176336162965}
   - component: {fileID: 4995994175642453723}
-  - component: {fileID: 8592502766269667315}
+  - component: {fileID: 5285003260749177616}
   - component: {fileID: 6282770667931745321}
   - component: {fileID: -7685424887615771496}
   - component: {fileID: 1660302114828941755}
@@ -174,7 +174,7 @@ MonoBehaviour:
   _StopDistance: 1
   _Direction: {x: 1, y: 0}
   _Speed: 0
---- !u!114 &8592502766269667315
+--- !u!114 &5285003260749177616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1700407068539988595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f31f760d337b5a8418b968cda5bc1fb6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e8c840132beeae4ba0734d0c2c63cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _MovementMechanic: {fileID: 4995994175642453723}
@@ -191,10 +191,18 @@ MonoBehaviour:
   _Angle: 45
   _FixedUpdate: 1
   _FixedStep: 1
-  _LayerMask:
+  _ResourcesLayerMask:
     serializedVersion: 2
-    m_Bits: 704
-  _Seen: []
+    m_Bits: 192
+  _PredatorsLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _SimilarsLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  _Resources: []
+  _Predators: []
+  _Similars: []
 --- !u!114 &6282770667931745321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +257,7 @@ MonoBehaviour:
   _BtsNumber: 2
   _Animal: {fileID: -8722272176336162965}
   _MovementMechanic: {fileID: 4995994175642453723}
-  _FovAnimal: {fileID: 8592502766269667315}
+  _FOV: {fileID: 5285003260749177616}
   _DefaultTimeToReach: 20
   _BTSearch: {fileID: 6282770667931745321}
   _BTSatisfy: {fileID: -7685424887615771496}

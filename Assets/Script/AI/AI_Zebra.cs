@@ -15,7 +15,7 @@ public class AI_Zebra : AI_Animal
     [SerializeField]
     private MovementMechanic _MovementMechanic;
     [SerializeField]
-    private FOV_Animal _FovAnimal;
+    private FOV_Herbivore _FOV;
 
     [Header("GOB parameters")]
     [SerializeField]
@@ -87,17 +87,12 @@ public class AI_Zebra : AI_Animal
         }
 
         // update goals' distances and resources basing on fov data
-        foreach (Collider2D collider in _FovAnimal.Seen)
+        foreach (Resource res in _FOV.Resources)
         {
-            // check if it is a resource
-            Resource res = collider.gameObject.GetComponent<Resource>();
-            if (res == null)
-                continue;
-
             // check goal
             GOB_Goal gg = _Animal.Needs[res.Data.NeedId];
             int index = goals.IndexOf(gg);
-            float timeToReach = (collider.transform.position - transform.position).magnitude / _MovementMechanic.WalkSpeed; // time to reach current resource
+            float timeToReach = (res.transform.position - transform.position).magnitude / _MovementMechanic.WalkSpeed; // time to reach current resource
 
             if (timeToReach < times[index])
             {
