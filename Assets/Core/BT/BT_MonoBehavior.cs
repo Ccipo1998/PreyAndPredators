@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditorInternal;
 using UnityEngine;
 
 public abstract class BT_MonoBehavior : MonoBehaviour
@@ -9,6 +10,8 @@ public abstract class BT_MonoBehavior : MonoBehaviour
     protected bool _FixedUpdate = false;
     [SerializeField]
     protected float _FixedStep = .1f;
+    [SerializeField]
+    public int Status = -1;
 
     protected BT_ITask _root;
     public BT_ITask Root { set { _root = value; } }
@@ -20,7 +23,9 @@ public abstract class BT_MonoBehavior : MonoBehaviour
 
     public void StartBT()
     {
-      if (_FixedUpdate)
+        Status = -1;
+
+        if (_FixedUpdate)
             _coroutine = StartCoroutine(FixedUpdateBT());
         else
             _coroutine = StartCoroutine(UpdateBT());
@@ -28,8 +33,11 @@ public abstract class BT_MonoBehavior : MonoBehaviour
 
     public void StopBT()
     {
-        StopCoroutine(_coroutine);
-        _coroutine = null;
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+            _coroutine = null;
+        }
 
         // call function to do at stopping the BT
         OnStopBT();
@@ -39,10 +47,9 @@ public abstract class BT_MonoBehavior : MonoBehaviour
     private IEnumerator UpdateBT()
     {
         // coroutine must be stopped explicitly or due to success/fail of the BT
-        int status = -1;
-        while (status == -1)
+        while (Status == -1)
         {
-            status = _root.Run();
+            Status = _root.Run();
 
             yield return null;
         }
@@ -52,10 +59,9 @@ public abstract class BT_MonoBehavior : MonoBehaviour
     private IEnumerator FixedUpdateBT()
     {
         // coroutine must be stopped explicitly or due to success/fail of the BT
-        int status = -1;
-        while (status == -1)
+        while (Status == -1)
         {
-            status = _root.Run();
+            Status = _root.Run();
 
             yield return new WaitForSeconds(_FixedStep);
         }

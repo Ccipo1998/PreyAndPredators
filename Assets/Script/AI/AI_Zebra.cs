@@ -54,9 +54,11 @@ public class AI_Zebra : AI_Animal
 
         // transitions
         HSM_Transition canSatisfy = new HSM_Transition("Can satisfy", CanSatisfy);
+        HSM_Transition satisfied = new HSM_Transition("Satisfied", Satisfied);
 
         // link states-transitions
         search.AddTransition(canSatisfy, satisfy);
+        satisfy.AddTransition(satisfied, search);
 
         _hsm = new HSM("Zebra HSM", search, 0);
     }
@@ -121,6 +123,12 @@ public class AI_Zebra : AI_Animal
 
         // cannot satisfy
         return false;
+    }
+
+    // check whenever the current goal is been satisfied
+    private bool Satisfied()
+    {
+        return _BTSatisfy.Status == 1;
     }
 
     #endregion

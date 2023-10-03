@@ -20,7 +20,6 @@ public class BT_Satisfy : BT_MonoBehavior
     public GOB_Goal Goal;
 
     private float _timer = .0f;
-    private Coroutine _satisfy_coroutine;
 
     private void OnEnable()
     {
@@ -54,10 +53,6 @@ public class BT_Satisfy : BT_MonoBehavior
     
     protected override void OnStopBT()
     {
-        // stop coroutine
-        StopCoroutine(_satisfy_coroutine);
-        _satisfy_coroutine = null;
-
         // clear satisfy data
         Resource = null;
         Goal = null;
@@ -101,31 +96,28 @@ public class BT_Satisfy : BT_MonoBehavior
 
     private int Satisfy()
     {
-        _satisfy_coroutine = StartCoroutine(SatisfyNeed());
-
-        return 1;
-    }
-
-    public IEnumerator SatisfyNeed()
-    {
-        // only while the need is satisfied
-        while (Goal.Value < Goal.Data.MaxValue)
+        // check resource availability
+        if (!Goal.Data.CanBeAlwaysSatisfied && Resource == null)
         {
-            // check resource availability
-            if (!Goal.Data.CanBeAlwaysSatisfied && Resource == null)
-            {
-                // resource expired
-                Goal = null;
+            // resource expired
+            Goal = null;
 
-                yield break;
-            }
-
-            Goal.Value += Goal.Data.SatisfyRate * Time.deltaTime;
-
-            yield return null;
+            return 1;
         }
 
-        // insure correct max value
-        Goal.Value = Goal.Data.MaxValue;
+        if (_FixedUpdate)
+            Goal.Value += Goal.Data.SatisfyRate * _FixedStep;
+        else
+            Goal.Value += Goal.Data.SatisfyRate * Time.deltaTime;
+
+        if (Goal.Value >= Goal.Data.MaxValue)
+        {
+            // insure correct max value
+            Goal.Value = Goal.Data.MaxValue;
+
+            return 1;
+        }
+
+        return -1;
     }
 }
