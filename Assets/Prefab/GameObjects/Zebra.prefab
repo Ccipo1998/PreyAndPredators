@@ -154,6 +154,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 25d3df28c8f5c2848839582dcb900d0b, type: 2}
   - {fileID: 11400000, guid: bf7eb9e4f9ccb5342b6d2cb966a9ae7f, type: 2}
   - {fileID: 11400000, guid: 992c4e33267181745a5da90dceb52131, type: 2}
+  _Needs: []
 --- !u!114 &4995994175642453723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _FixedUpdate: 0
   _FixedStep: 0.1
+  Status: -1
   _AIAnimal: {fileID: 1660302114828941755}
   _MovementMechanic: {fileID: 4995994175642453723}
 --- !u!114 &-7685424887615771496
@@ -224,9 +226,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _FixedUpdate: 1
   _FixedStep: 1
+  Status: -1
   _AIAnimal: {fileID: 1660302114828941755}
   _MovementMechanic: {fileID: 4995994175642453723}
   Resource: {fileID: 0}
+  Goal:
+    Value: 0
+    Data: {fileID: 0}
 --- !u!114 &1660302114828941755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ReactionTime: 1
-  _BTsNumber: 2
+  _BtsNumber: 2
   _Animal: {fileID: -8722272176336162965}
   _MovementMechanic: {fileID: 4995994175642453723}
   _FovAnimal: {fileID: 8592502766269667315}

@@ -9,7 +9,7 @@ public abstract class AI_Animal : MonoBehaviour
 
     // number of behavior trees associated to the AI -> for initialization
     [SerializeField]
-    protected int _BTsNumber;
+    protected int _BtsNumber;
 
     protected HSM _hsm;
 

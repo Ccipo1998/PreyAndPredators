@@ -105,10 +105,17 @@ public class BT_Satisfy : BT_MonoBehavior
             return 1;
         }
 
+        float consumed = .0f;
         if (_FixedUpdate)
-            Goal.Value += Goal.Data.SatisfyRate * _FixedStep;
+            consumed = Goal.Data.SatisfyRate * _FixedStep;
         else
-            Goal.Value += Goal.Data.SatisfyRate * Time.deltaTime;
+            consumed = Goal.Data.SatisfyRate * Time.deltaTime;
+
+        // satisfy need
+        Goal.Value += consumed;
+        // consume resource
+        if (Resource != null)
+            Resource.Consume(consumed);
 
         if (Goal.Value >= Goal.Data.MaxValue)
         {

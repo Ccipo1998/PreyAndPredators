@@ -31,9 +31,9 @@ public class AI_Zebra : AI_Animal
 
     public override void BT_Initialized()
     {
-        --_BTsNumber;
+        --_BtsNumber;
 
-        if (_BTsNumber == 0)
+        if (_BtsNumber == 0)
             StartCoroutine(UpdateHSM());
     }
 

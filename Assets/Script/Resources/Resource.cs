@@ -5,7 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Resource : MonoBehaviour
 {
-    public float Quantity;
+    [SerializeField]
+    private float Quantity;
 
     public Scriptable_Resource Data;
 
@@ -22,6 +23,15 @@ public class Resource : MonoBehaviour
 
         // start resource life coroutines
         StartCoroutine(QuantityUpdate());
+    }
+
+    public void Consume(float quantity)
+    {
+        Quantity = Mathf.Max(.0f, Quantity - quantity);
+
+        // resource consumed
+        if (Quantity == .0f)
+            Destroy(gameObject);
     }
 
     #region COROUTINES
