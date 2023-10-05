@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830b3e5060558f440a211fa1b8028ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AnimalAI: {fileID: 1660302114828941755}
   _StartingNeeds:
   - {fileID: 11400000, guid: 329b6092bb849a54d8b6fbb25cdc6ef6, type: 2}
   - {fileID: 11400000, guid: 26892a40d05387d43a4e02f2640e8157, type: 2}
@@ -155,6 +156,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bf7eb9e4f9ccb5342b6d2cb966a9ae7f, type: 2}
   - {fileID: 11400000, guid: 992c4e33267181745a5da90dceb52131, type: 2}
   _Needs: []
+  _SocialityResource: {fileID: 11400000, guid: 73077b369132dea4788e788b8244a979, type: 2}
+  _SpaceResource: {fileID: 11400000, guid: 9ab4cebf0e2c2234285634e8f689febd, type: 2}
 --- !u!114 &4995994175642453723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdc324c1de3c0f4297e404148f2ce3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AnimalAI: {fileID: 1660302114828941755}
   _RunSpeed: 3
   _WalkSpeed: 1.5
   _Acceleration: 1
@@ -186,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8c840132beeae4ba0734d0c2c63cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AnimalAI: {fileID: 1660302114828941755}
   _MovementMechanic: {fileID: 4995994175642453723}
   _Length: 5
   _Angle: 45
@@ -215,10 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9045fa11d02c155469cec81ec08b4d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AnimalAI: {fileID: 1660302114828941755}
   _FixedUpdate: 0
   _FixedStep: 0.1
   Status: -1
-  _AIAnimal: {fileID: 1660302114828941755}
   _MovementMechanic: {fileID: 4995994175642453723}
 --- !u!114 &-7685424887615771496
 MonoBehaviour:
@@ -232,12 +237,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984c9223fc326e141b6a8d6e2074eb9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AnimalAI: {fileID: 1660302114828941755}
   _FixedUpdate: 1
   _FixedStep: 1
   Status: -1
-  _AIAnimal: {fileID: 1660302114828941755}
   _MovementMechanic: {fileID: 4995994175642453723}
-  Resource: {fileID: 0}
+  Target: {fileID: 0}
   Goal:
     Value: 0
     Data: {fileID: 0}
@@ -254,10 +259,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ReactionTime: 1
-  _BtsNumber: 2
+  _MonobehavioursNumber: 5
   _Animal: {fileID: -8722272176336162965}
   _MovementMechanic: {fileID: 4995994175642453723}
   _FOV: {fileID: 5285003260749177616}
+  _CurrentGoal:
+    Value: 0
+    Data: {fileID: 0}
   _DefaultTimeToReach: 20
   _BTSearch: {fileID: 6282770667931745321}
   _BTSatisfy: {fileID: -7685424887615771496}

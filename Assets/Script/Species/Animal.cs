@@ -5,6 +5,9 @@ using UnityEngine;
 public class Animal : MonoBehaviour
 {
     [SerializeField]
+    protected AI_Animal _AnimalAI;
+
+    [SerializeField]
     private List<Scriptable_GOB_Goal> _StartingNeeds;
 
     // dictionary of need id - value
@@ -15,6 +18,14 @@ public class Animal : MonoBehaviour
     // clone of needs for editor
     [SerializeField]
     private List<GOB_Goal> _Needs;
+
+    [SerializeField]
+    private Scriptable_Resource _SocialityResource;
+    [SerializeField]
+    private Scriptable_Resource _SpaceResource;
+
+    public Scriptable_Resource SocialityResource { get => _SocialityResource; }
+    public Scriptable_Resource SpaceResource { get => _SpaceResource; }
 
     void OnEnable()
     {
@@ -31,6 +42,9 @@ public class Animal : MonoBehaviour
 
         // start animal life coroutines
         StartCoroutine(NeedsUpdate());
+
+        // at end of initialization, always notify that
+        _AnimalAI.MonoBehaviourReady();
     }
 
     #region COROUTINES

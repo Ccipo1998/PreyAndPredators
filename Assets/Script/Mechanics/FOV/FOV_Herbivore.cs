@@ -31,6 +31,9 @@ public class FOV_Herbivore : FOV_Animal
         _Resources = new List<Resource>();
         _Predators = new List<Animal>();
         _Similars = new List<Animal>();
+
+        // at end of initialization, always notify that
+        _AnimalAI.MonoBehaviourReady();
     }
 
     protected override void See()

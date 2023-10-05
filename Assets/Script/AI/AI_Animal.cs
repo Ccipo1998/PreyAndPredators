@@ -7,13 +7,13 @@ public abstract class AI_Animal : MonoBehaviour
     [SerializeField]
     protected float _ReactionTime;
 
-    // number of behavior trees associated to the AI -> for initialization
+    // number of scripts attached to the AI -> for initialization
     [SerializeField]
-    protected int _BtsNumber;
+    protected int _MonobehavioursNumber;
 
     protected HSM _hsm;
 
-    public abstract void BT_Initialized();
+    public abstract void MonoBehaviourReady();
 
     protected IEnumerator UpdateHSM()
     {

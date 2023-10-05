@@ -6,6 +6,9 @@ using UnityEngine;
 public abstract class FOV_Animal : MonoBehaviour
 {
     [SerializeField]
+    protected AI_Animal _AnimalAI;
+
+    [SerializeField]
     protected MovementMechanic _MovementMechanic;
 
     [Header("FOV parameters")]
@@ -19,6 +22,8 @@ public abstract class FOV_Animal : MonoBehaviour
     protected float _FixedStep = .1f;
     
     protected float _min_dot;
+
+    public float Length { get => _Length; }
 
     private void OnEnable()
     {

@@ -8,14 +8,11 @@ public class BT_Satisfy : BT_MonoBehavior
     private float _GoToResourceMaximumTime; // it is the maximum accepted time for the BT to arrive to the resource
 
     [SerializeField]
-    private AI_Animal _AIAnimal;
-
-    [SerializeField]
     private MovementMechanic _MovementMechanic;
 
     [Header("BT current data")]
     [SerializeField]
-    public Resource Resource;
+    public GameObject Target;
     [SerializeField]
     public GOB_Goal Goal;
 
@@ -47,25 +44,25 @@ public class BT_Satisfy : BT_MonoBehavior
         Root = selector;
 
         // at end of initialization, always notify that
-        _AIAnimal.BT_Initialized();
+        _AnimalAI.MonoBehaviourReady();
     }
 
     
     protected override void OnStopBT()
     {
         // clear satisfy data
-        Resource = null;
+        Target = null;
         Goal = null;
     }
 
     private int IsResourceNotNull()
     {
-        return Resource != null ? 1 : 0;
+        return Target != null ? 1 : 0;
     }
 
     private int GoToResource()
     {
-        _MovementMechanic.GoTo((Vector2)Resource.transform.position);
+        _MovementMechanic.GoTo((Vector2)Target.transform.position);
 
         return 0;
     }
@@ -80,7 +77,7 @@ public class BT_Satisfy : BT_MonoBehavior
     private int IsArrivedToResource()
     {
         // success
-        if ((Resource.transform.position - transform.position).magnitude <= _MovementMechanic.StopDistance)
+        if ((Target.transform.position - transform.position).magnitude <= _MovementMechanic.StopDistance)
         {
             // arrived
             return 1;
@@ -97,7 +94,7 @@ public class BT_Satisfy : BT_MonoBehavior
     private int Satisfy()
     {
         // check resource availability
-        if (!Goal.Data.CanBeAlwaysSatisfied && Resource == null)
+        if (!Goal.Data.CanBeAlwaysSatisfied && Target == null)
         {
             // resource expired
             Goal = null;
@@ -114,8 +111,10 @@ public class BT_Satisfy : BT_MonoBehavior
         // satisfy need
         Goal.Value += consumed;
         // consume resource
-        if (Resource != null)
-            Resource.Consume(consumed);
+        if (Target != null)
+        {
+            Target.GetComponent<Resource>().Consume(consumed);
+        }
 
         if (Goal.Value >= Goal.Data.MaxValue)
         {

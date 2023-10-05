@@ -5,9 +5,6 @@ using UnityEngine;
 public class BT_Search : BT_MonoBehavior
 {
     [SerializeField]
-    private AI_Animal _AIAnimal;
-
-    [SerializeField]
     private MovementMechanic _MovementMechanic;
 
     private void OnEnable()
@@ -25,7 +22,7 @@ public class BT_Search : BT_MonoBehavior
         Root = repeat;
 
         // at end of initialization, always notify that
-        _AIAnimal.BT_Initialized();
+        _AnimalAI.MonoBehaviourReady();
     }
 
     // stop movement just after stopping the BT

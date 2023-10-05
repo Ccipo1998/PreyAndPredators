@@ -7,6 +7,9 @@ using UnityEngine;
 public abstract class BT_MonoBehavior : MonoBehaviour
 {
     [SerializeField]
+    protected AI_Animal _AnimalAI;
+
+    [SerializeField]
     protected bool _FixedUpdate = false;
     [SerializeField]
     protected float _FixedStep = .1f;

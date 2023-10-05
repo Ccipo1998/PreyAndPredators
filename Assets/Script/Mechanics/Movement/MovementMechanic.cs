@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class MovementMechanic : MonoBehaviour
 {
+    [SerializeField]
+    private AI_Animal _AnimalAI;
+
     [Header("Movement parameters")]
 
     [SerializeField]
@@ -31,6 +34,12 @@ public class MovementMechanic : MonoBehaviour
     public Vector2 Direction { get => _Direction; }
     public float WalkSpeed { get => _WalkSpeed; }
     public float StopDistance { get => _StopDistance; }
+
+    private void OnEnable()
+    {
+        // at end of initialization, always notify that
+        _AnimalAI.MonoBehaviourReady();
+    }
 
     public void RandomWalk()
     {
