@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de2da90b42c87d44a8eedb995a654cc, type: 3}
   m_Name: Resource_Sociality
   m_EditorClassIdentifier: 
-  NeedId: 0
-  Name: 
+  NeedId: 4
+  Name: Sociality
   Quantity: 0
   MinQuantity: 0
   MaxQuantity: 0
