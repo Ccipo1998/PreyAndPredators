@@ -11,6 +11,12 @@ public abstract class FOV_Animal : MonoBehaviour
     [SerializeField]
     protected MovementMechanic _MovementMechanic;
 
+    [Header("Layers data")]
+    [SerializeField]
+    protected LayerMask _ResourcesLayerMask;
+    [SerializeField]
+    protected LayerMask _SimilarsLayerMask;
+
     [Header("FOV parameters")]
     [SerializeField]
     protected float _Length;
@@ -20,7 +26,16 @@ public abstract class FOV_Animal : MonoBehaviour
     protected bool _FixedUpdate = false;
     [SerializeField]
     protected float _FixedStep = .1f;
-    
+
+    [Header("FOV data")]
+    [SerializeField]
+    protected List<Resource> _Resources = new List<Resource>();
+    [SerializeField]
+    protected List<Animal> _Similars = new List<Animal>();
+
+    public List<Resource> Resources { get => _Resources; }
+    public List<Animal> Similars { get => _Similars; }
+
     protected float _min_dot;
 
     public float Length { get => _Length; }

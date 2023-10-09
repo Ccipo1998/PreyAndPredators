@@ -14,4 +14,5 @@ public class Scriptable_GOB_Goal : ScriptableObject
     public float MinValue, MaxValue;
 
     public bool CanBeAlwaysSatisfied = false;
+    public bool ValueChangeWithTime = true;
 }

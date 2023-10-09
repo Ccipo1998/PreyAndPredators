@@ -6,32 +6,16 @@ using UnityEngine.UIElements;
 
 public class FOV_Herbivore : FOV_Animal
 {
+    [Header("Herbivore data")]
     [SerializeField]
-    protected LayerMask _ResourcesLayerMask;
+    private List<Animal> _Predators = new List<Animal>();
     [SerializeField]
     protected LayerMask _PredatorsLayerMask;
-    [SerializeField]
-    protected LayerMask _SimilarsLayerMask;
 
-    [Header("FOV data")]
-    [SerializeField]
-    private List<Resource> _Resources;
-    [SerializeField]
-    private List<Animal> _Predators;
-    [SerializeField]
-    private List<Animal> _Similars;
-
-    public List<Resource> Resources { get => _Resources; }
     public List<Animal> Predators { get => _Predators; }
-    public List<Animal> Similars { get => _Similars; }
 
     protected override void DoOnEnable()
     {
-        // init seen list
-        _Resources = new List<Resource>();
-        _Predators = new List<Animal>();
-        _Similars = new List<Animal>();
-
         // at end of initialization, always notify that
         _AnimalAI.MonoBehaviourReady();
     }

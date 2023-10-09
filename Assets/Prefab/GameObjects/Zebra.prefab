@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _AnimalAI: {fileID: 1660302114828941755}
+  _FOV: {fileID: 5285003260749177616}
   _StartingNeeds:
   - {fileID: 11400000, guid: 329b6092bb849a54d8b6fbb25cdc6ef6, type: 2}
   - {fileID: 11400000, guid: 26892a40d05387d43a4e02f2640e8157, type: 2}
@@ -192,22 +193,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _AnimalAI: {fileID: 1660302114828941755}
   _MovementMechanic: {fileID: 4995994175642453723}
+  _ResourcesLayerMask:
+    serializedVersion: 2
+    m_Bits: 192
+  _SimilarsLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
   _Length: 5
   _Angle: 45
   _FixedUpdate: 1
   _FixedStep: 1
-  _ResourcesLayerMask:
-    serializedVersion: 2
-    m_Bits: 192
+  _Resources: []
+  _Similars: []
+  _Predators: []
   _PredatorsLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  _SimilarsLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  _Resources: []
-  _Predators: []
-  _Similars: []
 --- !u!114 &6282770667931745321
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class GOB
@@ -69,16 +70,24 @@ public static class GOB
             after.Add(new GOB_Goal());
             after[i].Data = needs[i].Data;
             after[i].Value = needs[i].Value;
+            after[i].CurrentDecreaseRate = needs[i].CurrentDecreaseRate;
         }
 
+        float decreaseRate = .0f;
         for (int i = 0; i < after.Count; ++i)
         {
-            after[i].Value -= after[i].Data.DecreaseRate * delayTime;
+            if (after[i].Data.ValueChangeWithTime)
+                decreaseRate = after[i].Data.DecreaseRate;
+            else
+                decreaseRate = after[i].CurrentDecreaseRate;
+
+            after[i].Value -= decreaseRate * delayTime;
             after[i].Value = Mathf.Max(after[i].Data.MinValue, after[i].Value);
         }
 
         // time to satisfy selected goal
-        float time = (after[selectedGoal].Data.MaxValue - after[selectedGoal].Value) / after[selectedGoal].Data.SatisfyRate;
+        float satisfyRate = after[selectedGoal].Data.ValueChangeWithTime ? after[selectedGoal].Data.SatisfyRate : after[selectedGoal].CurrentSatisfyRate;
+        float time = (after[selectedGoal].Data.MaxValue - after[selectedGoal].Value) / satisfyRate;
 
         for (int i = 0; i < after.Count; ++i)
         {
@@ -93,13 +102,15 @@ public static class GOB
 
     private static float IncreasingDiscontentment(GOB_Goal need, float time)
     {
-        float disc = need.Data.MaxValue - need.Value - (need.Data.SatisfyRate * time);
+        float satisfyRate = need.Data.ValueChangeWithTime ? need.Data.SatisfyRate : need.CurrentSatisfyRate;
+        float disc = need.Data.MaxValue - need.Value - (satisfyRate * time);
         return disc * disc;
     }
 
     private static float DecreasingDiscontentment(GOB_Goal need, float time)
     {
-        float disc = need.Data.MaxValue - need.Value + (need.Data.DecreaseRate * time);
+        float decreaseRate = need.Data.ValueChangeWithTime ? need.Data.DecreaseRate : need.CurrentDecreaseRate;
+        float disc = need.Data.MaxValue - need.Value + (decreaseRate * time);
         disc = Mathf.Max(need.Data.MinValue, disc);
         return disc * disc;
     }
